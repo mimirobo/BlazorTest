@@ -1,0 +1,24 @@
+﻿@inject NavigationManager NavigationManager
+
+@page "/"
+
+<h1>Hello, world!</h1>
+
+<a href="" @onclick="@( async e => await NavigateToAPage(2))" @onclick:preventDefault>I am a Bug - Click Me</a>
+
+    Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code{
+    private async Task NavigateToAPage(int delay)
+    {
+        NavigationManager.NavigateTo($"/fetchdata", false);
+        await LoadPageStuff(delay);
+    }
+
+    private async Task LoadPageStuff(int delay)
+    {
+        await Task.Delay(delay * 1000);
+    }
+}
